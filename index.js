@@ -92,8 +92,6 @@ export const uniquePassword = (options = {}) => {
   if (random) {
     choice = choice.sort(() => 0.5 - Math.random());
   }
-  console.log(random);
-  console.log(choice);
 
   // Generate the password from the choice array
   let password = "";
@@ -116,7 +114,6 @@ export const uniqueUsername = (options = {}) => {
     specialCharacter,
     random,
   } = finalOptions;
-  console.log(finalOptions);
   const totalRequested =
     capitalLetter + smallLetter + number + specialCharacter;
   if (totalRequested > length) {
@@ -152,8 +149,6 @@ export const uniqueUsername = (options = {}) => {
   if (random) {
     choice = choice.sort(() => 0.5 - Math.random());
   }
-
-  console.log(choice);
 
   let username = "";
   choice.forEach(function (value) {
