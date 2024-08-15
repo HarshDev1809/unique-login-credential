@@ -1,0 +1,19 @@
+{
+  "name": "unique-login-credential",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarshDev1809/unique-login-credential.git"
+  },
+  "author": "Harsh Dev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/HarshDev1809/unique-login-credential/issues"
+  },
+  "homepage": "https://github.com/HarshDev1809/unique-login-credential#readme"
+}
