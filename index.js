@@ -31,6 +31,7 @@ const defaultPasswordOptions = {
 
 // default username options
 const defaultUsernameOptions = {
+  prefix: "",
   length: 6,
   capitalLetter: 1,
   smallLetter: 3,
@@ -107,6 +108,7 @@ export const uniquePassword = (options = {}) => {
 export const uniqueUsername = (options = {}) => {
   const finalOptions = { ...defaultUsernameOptions, ...options };
   const {
+    prefix,
     length,
     capitalLetter,
     smallLetter,
@@ -115,14 +117,16 @@ export const uniqueUsername = (options = {}) => {
     random,
   } = finalOptions;
   const totalRequested =
-    capitalLetter + smallLetter + number + specialCharacter;
+    capitalLetter + smallLetter + number + specialCharacter + prefix.length;
   if (totalRequested > length) {
     throw new Error(
       "Invalid username length: Total character count exceeds the username length."
     );
   }
   let choice = [];
-
+  let username = "";
+  let usernamePrefix = String(prefix);
+  username += usernamePrefix;
   if (capitalLetter > 0) {
     choice.push(...getFilledArray("capitalAlphabet", capitalLetter));
   }
@@ -149,8 +153,6 @@ export const uniqueUsername = (options = {}) => {
   if (random) {
     choice = choice.sort(() => 0.5 - Math.random());
   }
-
-  let username = "";
   choice.forEach(function (value) {
     const ch =
       refrenceObj[value][Math.floor(Math.random() * refrenceObj[value].length)];
