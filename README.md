@@ -1,17 +1,16 @@
-# Unique Login Credential Generator
+# Unique Login Credential
 
-**Unique Login Credential Generator** is a highly customizable npm package that generates secure and unique usernames and passwords based on specified criteria. This package is perfect for applications that require user authentication with unique credentials, providing flexibility and security.
+`unique-login-credential` is a versatile Node.js package designed to generate secure and customizable passwords and usernames. It allows you to specify various parameters to tailor the generated credentials to your specific needs. Whether you're building a new application or enhancing an existing one, this package provides an easy-to-use solution for credential generation.
 
 ## Features
 
-- **Customizable Password Generation**: Configure the total length and composition of the password, including uppercase letters, lowercase letters, numbers, and special characters.
-- **Customizable Username Generation**: Generate unique usernames with options for prefixes, character types, and length.
-- **Error Handling**: Built-in validation ensures that the total number of characters specified does not exceed the desired length.
-- **Randomization**: Optional random shuffling of characters to make passwords and usernames less predictable.
+- **Customizable Password Generation**: Specify the length and composition of your passwords, including capital letters, small letters, numbers, and special characters.
+- **Flexible Username Generation**: Add prefixes and define the character composition for usernames.
+- **Support for ES Modules and CommonJS**: Compatible with various JavaScript module systems.
 
 ## Installation
 
-Install the package via npm:
+To install the package, use npm:
 
 ```bash
 npm install unique-login-credential
@@ -19,123 +18,142 @@ npm install unique-login-credential
 
 ## Usage
 
-### 1. Generating a Password
+### ES Modules
 
-The `uniquePassword()` function generates a password based on customizable options. You can specify the number of characters for each type (uppercase, lowercase, numbers, and special characters) and the total length.
-
-```javascript
-const { uniquePassword } = require('unique-login-credential');
-
-// Generate a secure password with custom options
-const passwordOptions = {
-  length: 12,                // Total length of the password
-  capitalLetter: 3,          // Number of uppercase letters
-  smallLetter: 4,            // Number of lowercase letters
-  number: 3,                 // Number of numeric digits
-  specialCharacter: 2,       // Number of special characters
-  random: true,              // Shuffle characters randomly
-};
-
-const password = uniquePassword(passwordOptions);
-console.log(password); // Example output: T3r@pG7jH$q2
-```
-
-#### Password Parameters:
-
-- **`length`**: The total length of the password (default: 8).
-- **`capitalLetter`**: The number of uppercase letters in the password (default: 1).
-- **`smallLetter`**: The number of lowercase letters in the password (default: 3).
-- **`number`**: The number of numeric characters in the password (default: 2).
-- **`specialCharacter`**: The number of special characters in the password (default: 2).
-- **`random`**: Boolean flag indicating whether to shuffle characters randomly (default: `false`).
-
-If the total number of specified characters exceeds the `length`, an error will be thrown.
-
-### Example: Custom Password Generation
+If your project uses ES modules, you can import the functions using `import` statements:
 
 ```javascript
-const customPasswordOptions = {
-  length: 10,
-  capitalLetter: 2,
-  smallLetter: 3,
-  number: 2,
-  specialCharacter: 3,
-  random: true,
-};
+import { uniquePassword, uniqueUsername } from 'unique-login-credential';
 
-const password = uniquePassword(customPasswordOptions);
-console.log(password); // Example output: 4xT&@rJ5!a
-```
-
-### 2. Generating a Username
-
-The `uniqueUsername()` function generates a username with customizable options, including a prefix, total length, and the number of different character types.
-
-```javascript
-const { uniqueUsername } = require('unique-login-credential');
-
-// Generate a unique username
-const usernameOptions = {
-  prefix: 'user_',         // Prefix for the username
-  length: 10,              // Total length of the username
-  capitalLetter: 2,        // Number of uppercase letters
-  smallLetter: 4,          // Number of lowercase letters
-  number: 2,               // Number of numeric digits
-  specialCharacter: 1,     // Number of special characters
-  random: true,            // Shuffle characters randomly
-};
-
-const username = uniqueUsername(usernameOptions);
-console.log(username); // Example output: user_X9#pAd3
-```
-
-#### Username Parameters:
-
-- **`prefix`**: A string that will be added at the beginning of the username (default: empty string).
-- **`length`**: The total length of the username, including the prefix (default: 6).
-- **`capitalLetter`**: The number of uppercase letters in the username (default: 1).
-- **`smallLetter`**: The number of lowercase letters in the username (default: 3).
-- **`number`**: The number of numeric characters in the username (default: 2).
-- **`specialCharacter`**: The number of special characters in the username (default: 0).
-- **`random`**: Boolean flag indicating whether to shuffle characters randomly (default: `false`).
-
-### Example: Custom Username Generation
-
-```javascript
-const customUsernameOptions = {
-  prefix: 'admin_',        // Prefix for the username
+// Generate a password with specific options
+const password = uniquePassword({
   length: 12,
-  capitalLetter: 3,
+  capitalLetter: 2,
   smallLetter: 4,
   number: 3,
   specialCharacter: 2,
-  random: true,
-};
+  random: true
+});
+console.log(`Generated Password: ${password}`);
 
-const username = uniqueUsername(customUsernameOptions);
-console.log(username); // Example output: admin_A1#bC4$dFg3
+// Generate a username with specific options
+const username = uniqueUsername({
+  prefix: 'user_',
+  length: 10,
+  capitalLetter: 2,
+  smallLetter: 5,
+  number: 2,
+  specialCharacter: 1,
+  random: true
+});
+console.log(`Generated Username: ${username}`);
 ```
 
-## Error Handling
+### CommonJS
 
-Both `uniquePassword()` and `uniqueUsername()` include error handling to ensure the user does not provide invalid configurations. For example:
-- If the total number of specified character types exceeds the total length, an error will be thrown.
-- Invalid counts (e.g., negative numbers) will result in an error.
-
-Example of error handling:
+For projects using CommonJS modules, import the functions using `require`:
 
 ```javascript
-try {
-  const password = uniquePassword({
-    length: 6,
-    capitalLetter: 4,
-    smallLetter: 4,
-  });
-} catch (error) {
-  console.error(error.message); // Output: "Invalid password length: Total character count exceeds the password length."
-}
+const { uniquePassword, uniqueUsername } = require('unique-login-credential');
+
+// Generate a password with specific options
+const password = uniquePassword({
+  length: 12,
+  capitalLetter: 2,
+  smallLetter: 4,
+  number: 3,
+  specialCharacter: 2,
+  random: true
+});
+console.log(`Generated Password: ${password}`);
+
+// Generate a username with specific options
+const username = uniqueUsername({
+  prefix: 'user_',
+  length: 10,
+  capitalLetter: 2,
+  smallLetter: 5,
+  number: 2,
+  specialCharacter: 1,
+  random: true
+});
+console.log(`Generated Username: ${username}`);
 ```
+
+## Functions
+
+### uniquePassword(options)
+
+Generates a unique and secure password based on the provided options.
+
+**Parameters:**
+
+- `options`: An object with the following properties:
+  - `length` (number): Total length of the password. The minimum value should be the sum of `capitalLetter`, `smallLetter`, `number`, and `specialCharacter`. **Default:** 8
+  - `capitalLetter` (number): Number of capital letters to include. **Default:** 1
+  - `smallLetter` (number): Number of small letters to include. **Default:** 3
+  - `number` (number): Number of numeric digits to include. **Default:** 2
+  - `specialCharacter` (number): Number of special characters to include. **Default:** 2
+  - `random` (boolean): Whether to shuffle the characters in the password randomly. **Default:** false
+
+**Returns:** A randomly generated password as a string.
+
+**Example:**
+
+```javascript
+const password = uniquePassword({
+  length: 12,
+  capitalLetter: 2,
+  smallLetter: 4,
+  number: 3,
+  specialCharacter: 2,
+  random: true
+});
+console.log(password); // Example output: "A1b@C2d!Ef3G"
+```
+
+### uniqueUsername(options)
+
+Generates a unique username based on the provided options.
+
+**Parameters:**
+
+- `options`: An object with the following properties:
+  - `prefix` (string): A prefix to add at the beginning of the username. **Default:** ""
+  - `length` (number): Total length of the username, including the prefix. The minimum length should be the sum of `capitalLetter`, `smallLetter`, `number`, `specialCharacter`, and the length of the prefix. **Default:** 6
+  - `capitalLetter` (number): Number of capital letters to include. **Default:** 1
+  - `smallLetter` (number): Number of small letters to include. **Default:** 3
+  - `number` (number): Number of numeric digits to include. **Default:** 2
+  - `specialCharacter` (number): Number of special characters to include. **Default:** 0
+  - `random` (boolean): Whether to shuffle the characters in the username randomly. **Default:** false
+
+**Returns:** A randomly generated username as a string.
+
+**Example:**
+
+```javascript
+const username = uniqueUsername({
+  prefix: 'user_',
+  length: 10,
+  capitalLetter: 2,
+  smallLetter: 5,
+  number: 2,
+  specialCharacter: 1,
+  random: true
+});
+console.log(username); // Example output: "user_a1B2cD@"
+```
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your changes (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a pull request describing your changes.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
