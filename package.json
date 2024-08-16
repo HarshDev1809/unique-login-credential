@@ -1,13 +1,13 @@
 {
   "name": "unique-login-credential",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.cjs",
-  "module": "index.js",  
-  "type": "module", 
+  "module": "index.js",
+  "type": "module",
   "exports": {
-    "require": "./index.cjs",  
-    "import": "./index.js"  
+    "require": "./index.cjs",
+    "import": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
